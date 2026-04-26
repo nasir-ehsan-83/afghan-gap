@@ -1,5 +1,5 @@
 from pydantic import BaseModel, ConfigDict, Field, field_validator
-from datetime import datetime, timezone
+from datetime import datetime
 from typing import Optional
 
 from app.schemas.user import UserAdminOut, UserPrivateOut, UserPublicOut
@@ -23,7 +23,6 @@ class PostAdminOut(PostBase):
 
     created_at: datetime
     updated_at: datetime
-    
     owner: UserAdminOut
 
     model_config = ConfigDict(from_attributes = True)
