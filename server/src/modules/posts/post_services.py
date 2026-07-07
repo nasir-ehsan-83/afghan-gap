@@ -9,8 +9,8 @@ from typing import (
     List, 
     Optional
 )
-from app.modules.posts.post_model import Post
-from app.modules.posts.post_schemas import (
+from src.modules.posts.post_model import Post
+from src.modules.posts.post_schemas import (
     PostCreate, 
     PostUpdate
 )

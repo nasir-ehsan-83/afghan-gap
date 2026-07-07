@@ -8,9 +8,9 @@ from sqlalchemy import (
     ForeignKey, 
     Enum as SQLEnum
 )
-from app.config.database import Base
-from app.modules.users.user_model import User
-from app.enums.post import (
+from src.config.database import Base
+from src.modules.users.user_model import User
+from src.enums.post import (
     PostStatus, 
     PostType, 
     PostVisibility

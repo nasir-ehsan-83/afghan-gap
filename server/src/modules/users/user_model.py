@@ -7,8 +7,8 @@ from sqlalchemy import (
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 
-from app.config.database import Base
-from app.enums.user import (
+from src.config.database import Base
+from src.enums.user import (
     UserRole, 
     UserStatus, 
     UserVisibility

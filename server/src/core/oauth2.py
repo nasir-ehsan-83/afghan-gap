@@ -8,8 +8,8 @@ from datetime import (
     datetime, 
     timedelta
 )
-from app.tokens.token_schemas import TokenData
-from app.config.config import settings
+from src.tokens.token_schemas import TokenData
+from src.config.config import settings
 
 SECRET_KEY = settings.SECRET_KEY
 ALGORITHM = settings.ALGORITHM

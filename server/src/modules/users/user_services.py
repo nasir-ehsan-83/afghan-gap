@@ -3,9 +3,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy import func
 
-from app.modules.users.user_schemas import UserCreate, UserUpdate
-from app.modules.users.user_model import User
-from app.core.security import hash
+from src.modules.users.user_schemas import UserCreate, UserUpdate
+from src.modules.users.user_model import User
+from src.core.security import hash
 
 async def create_user(user_in: UserCreate, db: AsyncSession) -> User:
    

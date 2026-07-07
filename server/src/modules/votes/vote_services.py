@@ -6,9 +6,9 @@ from fastapi import (
     Response, 
     status
 )
-from app.modules.votes.vote_model import Vote
-from app.modules.posts.post_model import Post
-from app.modules.votes.vote_schemas import VoteCreate
+from src.modules.votes.vote_model import Vote
+from src.modules.posts.post_model import Post
+from src.modules.votes.vote_schemas import VoteCreate
 
 async def create_new_vote(vote_in: VoteCreate, owner_id: int, db: AsyncSession) -> Vote:
     # get the post from database
