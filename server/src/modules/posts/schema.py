@@ -6,7 +6,7 @@ from pydantic import (
 from datetime import datetime
 from typing import Optional
 
-from server.src.modules.users.schemas import (
+from src.modules.users.schemas import (
     UserAdminOut, 
     UserPrivateOut, 
     UserPublicOut
