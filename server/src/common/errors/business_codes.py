@@ -1,13 +1,13 @@
 from enum import Enum
 
 class ErrorCode(str, Enum):
-    # Generic & System Codes
+    # generic and system codes
     VALIDATION_ERROR = "VALIDATION_ERROR"
     INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR"
     ROUTE_NOT_FOUND = "ROUTE_NOT_FOUND"
     METHOD_NOT_ALLOWED = "METHOD_NOT_ALLOWED"
     
-    # Auth & User Modules
+    # auth and user modules
     USER_NOT_FOUND = "USER_NOT_FOUND"
     USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS"
     PASSWORD_INCORRECT = "PASSWORD_INCORRECT"
@@ -16,7 +16,7 @@ class ErrorCode(str, Enum):
     TOKEN_EXPIRED = "TOKEN_EXPIRED"
     TOKEN_INVALID = "TOKEN_INVALID"
     
-    # Posts & Votes Modules
+    # posts and votes modules
     POST_NOT_FOUND = "POST_NOT_FOUND"
     POST_ALREADY_EXISTS = "POST_ALREADY_EXISTS"
     ALREADY_VOTED = "ALREADY_VOTED"
