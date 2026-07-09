@@ -4,11 +4,11 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
-from src.modules.users.user_model import Base
-from src.modules.posts.post_model import Base
-from src.modules.votes.vote_model import Base
-from server.src.config.config import settings
-from src.config.database import Base
+from server.src.modules.users.model import Base
+from server.src.modules.posts.model import Base
+from server.src.modules.votes.model import Base
+from server.src.config import settings
+from server.src.db.database import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
