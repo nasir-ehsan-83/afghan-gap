@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: gapgram_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: nasir_user
+      POSTGRES_PASSWORD: my_secure_password
+      POSTGRES_DB: gapgram_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: gapgram_backend
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./server:/app
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://nasir_user:my_secure_password@db:5432/gapgram_db
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
