@@ -37,7 +37,7 @@ from server.src.modules.users.services import (
 
 
 router = APIRouter(
-    prefix='/users',
+    prefix='/api/users',
     tags=["Users"]
 )
 
@@ -137,7 +137,7 @@ async def get_user_by_id(
 )
 async def update_user(
     current_user: int = Depends(get_current_user), 
-    id: int = Path(),
+    id: int = Path(gt = 0),
     updated_user: UserUpdate = Body(...), 
     db: AsyncSession = Depends(get_db)
 ) -> User:
@@ -151,7 +151,7 @@ async def update_user(
 @router.delete('/{id}')
 async def delete_user(
     current_user = Depends(get_current_user), 
-    id: int = Path(), 
+    id: int = Path(gt = 0), 
     db: AsyncSession = Depends(get_db)
 ):
     
