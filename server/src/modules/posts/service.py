@@ -46,12 +46,11 @@ async def create_new_post(
 
 # get a post
 async def get_one_post(
-    post_id: int, 
-    current_user: int, 
+    post_id: int,
     db: AsyncSession
 ) -> Optional[Post]:
     # get post from DB
-    post = await get_post(post_id, current_user.id, db)
+    post = await get_post(post_id, db)
 
     # if post does not exist
     if not post:

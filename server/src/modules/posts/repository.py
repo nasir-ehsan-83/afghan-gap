@@ -4,9 +4,11 @@ from typing import (
     List, 
     Optional
 )
-
 from server.src.modules.posts.model import Post
-from server.src.modules.posts.schema import PostCreate, PostUpdate
+from server.src.modules.posts.schema import( 
+    PostCreate, 
+    PostUpdate
+)
 
 
 
@@ -33,15 +35,13 @@ async def create_post(
 
 
 
-async def get_post (
-    post_id: int, 
-    owner_id: int, 
+async def get_post(
+    post_id: int,
     db: AsyncSession
 ) -> Optional[Post] :
     # get post from DB
     post_query = await db.execute(select(Post).filter(
-        Post.id == post_id, 
-        Post.owner_id == owner_id
+        Post.id == post_id
     ))
     
     return post_query.scalars().first() 
