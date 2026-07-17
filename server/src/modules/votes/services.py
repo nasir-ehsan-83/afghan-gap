@@ -1,12 +1,12 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
 from fastapi import Response
-from server.src.common.errors import (
+from src.common.errors import (
     NotFoundException,
     ConflictException,
     ErrorCode
 )
-from server.src.modules.votes.repository import (
+from src.modules.votes.repository import (
     create_vote, 
     delete_vote, 
     get_vote

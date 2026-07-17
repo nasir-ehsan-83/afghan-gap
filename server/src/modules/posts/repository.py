@@ -4,8 +4,8 @@ from typing import (
     List, 
     Optional
 )
-from server.src.modules.posts.model import Post
-from server.src.modules.posts.schema import( 
+from src.modules.posts.model import Post
+from src.modules.posts.schemas import( 
     PostCreate, 
     PostUpdate
 )

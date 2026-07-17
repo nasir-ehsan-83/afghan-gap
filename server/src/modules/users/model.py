@@ -7,12 +7,14 @@ from sqlalchemy import (
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 
-from server.src.db.database import Base
-from server.src.common.enums.user import (
+from src.db.database import Base
+from src.common.enums.user import (
     UserRole, 
     UserStatus, 
     UserVisibility
 )
+
+
 
 class User(Base):
     __tablename__ = "users"

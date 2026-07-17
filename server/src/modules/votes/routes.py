@@ -6,14 +6,14 @@ from fastapi import (
     Body, 
     Path
 )
-from server.src.common.dependencies.current_user import get_current_user
-from server.src.db.database import get_db
-from server.src.modules.votes.model import Vote
-from server.src.modules.votes.schemas import (
+from src.common.dependencies.current_user import get_current_user
+from src.db.database import get_db
+from src.modules.votes.model import Vote
+from src.modules.votes.schemas import (
     VoteCreate, 
     VoteOut
 )
-from server.src.modules.votes.services import (
+from src.modules.votes.services import (
     create_new_vote, 
     get_all_votes
 )

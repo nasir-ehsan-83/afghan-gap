@@ -10,11 +10,11 @@ from typing import (
     List, 
     Optional
 )
-from server.src.common.errors.http_exception import BadRequestException
-from server.src.db.database import get_db
-from server.src.common.dependencies.current_user import get_current_user
-from server.src.modules.users.model import User
-from server.src.modules.users.schemas import (
+from src.common.errors.http_exception import BadRequestException
+from src.db.database import get_db
+from src.common.dependencies.current_user import get_current_user
+from src.modules.users.model import User
+from src.modules.users.schemas import (
     UserCreate, 
     UserAdminOut, 
     UserPrivateOut,

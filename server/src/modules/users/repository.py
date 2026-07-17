@@ -4,11 +4,14 @@ from typing import (
     List, 
     Optional
 )
-from server.src.modules.users.schemas import (
+from src.modules.users.schemas import (
     UserCreate, 
     UserUpdate
 )
-from server.src.modules.users.model import User
+from src.modules.users.model import User
+
+
+
 
 async def get_user_by_email(
     email: str, 

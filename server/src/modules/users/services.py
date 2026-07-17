@@ -8,13 +8,13 @@ from server.src.common.errors import (
     ErrorCode
 )
 from src.core.security import hash
-from server.src.modules.users.model import User
+from src.modules.users.model import User
 
-from server.src.modules.users.schemas import (
+from src.modules.users.schemas import (
     UserCreate, 
     UserUpdate
 )
-from server.src.modules.users.repository import (
+from src.modules.users.repository import (
     create_new_user,
     delete_user,
     get_user_by_email,

@@ -4,14 +4,14 @@ from typing import (
     List, 
     Optional
 )
-from server.src.modules.posts.repository import (
+from src.modules.posts.repository import (
     create_post,
     delete_post, 
     get_post,
     get_posts
 )
 from src.modules.posts.model import Post
-from src.modules.posts.schema import (
+from src.modules.posts.schemas import (
     PostCreate, 
     PostUpdate
 )

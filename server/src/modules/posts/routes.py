@@ -14,14 +14,14 @@ from typing import (
 from src.db.database import get_db
 from src.common.dependencies.current_user import get_current_user
 from src.modules.posts.model import Post
-from src.modules.posts.schema import (
+from src.modules.posts.schemas import (
     PostCreate, 
     PostAdminOut, 
     PostPrivateOut, 
     PostPublicOut, 
     PostUpdate
 )
-from server.src.modules.posts.service import (
+from src.modules.posts.services import (
     create_new_post, 
     get_one_post, 
     get_all_posts, 
