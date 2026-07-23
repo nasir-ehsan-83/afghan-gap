@@ -1,6 +1,9 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
 from fastapi import Response
+from typing import (
+    Optional, 
+    Sequence
+)
 from src.common.errors import (
     NotFoundException,
     ConflictException,
@@ -8,9 +11,11 @@ from src.common.errors import (
 )
 from src.modules.votes.repository import (
     create_vote, 
-    delete_vote, 
+    delete_vote,
+    get_all_votes_db, 
     get_vote
 )
+from src.modules.auth.schemas import TokenData
 from src.modules.posts.repository import get_post
 from src.modules.votes.model import Vote
 from src.modules.votes.schemas import VoteCreate
@@ -20,9 +25,9 @@ from src.modules.votes.schemas import VoteCreate
 
 async def create_new_vote(
     vote_in: VoteCreate, 
-    current_user,
+    current_user: TokenData,
     db: AsyncSession
-) -> Vote:
+) -> Vote | Response:
     # get the post from database
     post = await get_post(vote_in.post_id, db)
 
@@ -35,7 +40,7 @@ async def create_new_vote(
    
     
     # get the vote from database
-    found_vote = await get_vote(vote_in.post_id, current_user.id)
+    found_vote: Optional[Vote] = await get_vote(vote_in.post_id, current_user.id, db)
 
     # if user want to vote
     if vote_in.vote is True:
@@ -79,7 +84,7 @@ async def create_new_vote(
 async def get_all_votes(
     post_id: int, 
     db: AsyncSession
-) -> List[Vote]:
+) -> Sequence[Vote]:
 
     # get the post from database
     post = await get_post(post_id, db)
@@ -91,4 +96,4 @@ async def get_all_votes(
             error_code = ErrorCode.POST_NOT_FOUND
         )
     
-    return await get_all_votes(post_id, db)
+    return await get_all_votes_db(post_id, db)

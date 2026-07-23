@@ -1,11 +1,15 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
+from typing import (
+    List, 
+    Sequence
+)
 from fastapi import (
     APIRouter,
     Depends,
     Body, 
     Path
 )
+from server.src.modules.auth.schemas import TokenData
 from src.common.dependencies.current_user import get_current_user
 from src.db.database import get_db
 from src.modules.votes.model import Vote
@@ -34,12 +38,12 @@ router = APIRouter(
     response_model = VoteOut
 )
 async def create_vote(
-    current_user = Depends(get_current_user),
+    current_user: TokenData = Depends(get_current_user),
     vote_in: VoteCreate = Body(...), 
     db: AsyncSession = Depends(get_db)
 ) -> Vote:
 
-    return await create_new_vote(vote_in, current_user.id, db)
+    return await create_new_vote(vote_in, current_user, db)
 
 
 
@@ -49,9 +53,9 @@ async def create_vote(
     response_model = List[VoteOut]
 )
 async def get_votes(
-    current_user = Depends(get_current_user),
+    current_user: TokenData = Depends(get_current_user),
     post_id: int = Path(gt = 0), 
     db: AsyncSession = Depends(get_db)
-) -> List[VoteOut]:
+) -> Sequence[Vote]:
 
     return await get_all_votes(post_id, db)

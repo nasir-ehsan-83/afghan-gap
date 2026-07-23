@@ -1,7 +1,11 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from typing import List, Optional
-
+from typing import (
+    Any, 
+    Dict, 
+    Sequence, 
+    Optional
+)
 from src.modules.votes.model import Vote
 
 
@@ -19,7 +23,7 @@ async def get_vote(
 
 
 async def create_vote(
-    vote_data: Vote,
+    vote_data: Dict[str, Any],
     db: AsyncSession
 ) -> Vote:
     
@@ -34,10 +38,10 @@ async def create_vote(
 
 
 
-async def get_all_votes(
+async def get_all_votes_db(
     post_id: int,
     db: AsyncSession
-) -> List[Vote]:
+) -> Sequence[Vote]:
     
     result = await db.execute(select(Vote).filter(Vote.post_id == post_id))
     
