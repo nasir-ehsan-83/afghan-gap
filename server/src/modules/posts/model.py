@@ -9,7 +9,7 @@ from sqlalchemy import (
     Enum as SQLEnum
 )
 from src.db.database import Base
-from src.modules.users.model import User
+from src.modules.users.model import User # type: ignore
 from src.common.enums.post import (
     PostStatus, 
     PostType, 

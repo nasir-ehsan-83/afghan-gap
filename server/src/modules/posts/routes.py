@@ -9,8 +9,10 @@ from fastapi import (
 )
 from typing import (
     List, 
-    Optional
+    Optional,
+    Sequence
 )
+from server.src.modules.auth.schemas import TokenData
 from src.db.database import get_db
 from src.common.dependencies.current_user import get_current_user
 from src.modules.posts.model import Post
@@ -43,7 +45,7 @@ router = APIRouter(
     response_model = PostPrivateOut
 )
 async def create_post(
-    current_user: int = Depends(get_current_user), 
+    current_user: TokenData = Depends(get_current_user), 
     post: PostCreate = Body(...), 
     db: AsyncSession = Depends(get_db)
 ) -> Post:
@@ -60,13 +62,13 @@ async def create_post(
     response_model = PostAdminOut
 )
 async def get_post(
-    current_user: int = Depends(get_current_user), 
+    current_user: TokenData = Depends(get_current_user), 
     id: int = Path(gt = 0), 
     db: AsyncSession = Depends(get_db)
 ) -> Optional[Post]:
 
     # send the data to the post_service.py to performe operations 
-    return await get_one_post(id, db)
+    return await get_one_post(id, current_user, db)
 
 
 
@@ -77,12 +79,12 @@ async def get_post(
     response_model = List[PostAdminOut]
 )
 async def get_all_posts_admin(
-    current_user: int = Depends(get_current_user), 
-    db: AsyncSession = Depends(get_db), 
+    current_user: TokenData = Depends(get_current_user), 
     limit: int = Query(gt = 0), 
     skip: int = Query(gt = 0), 
-    search: Optional[str] = Query()
-) -> Optional[List[Post]]:
+    search: Optional[str] = Query(),
+    db: AsyncSession = Depends(get_db)
+) -> Sequence[Post]:
 
     # send the data to the post_service.py to performe operations 
     return await get_all_posts(current_user, db, limit, skip, search)
@@ -96,15 +98,15 @@ async def get_all_posts_admin(
     response_model = List[PostPublicOut]
 )
 async def get_all_posts_owner(
-    current_user = Depends(get_current_user), 
+    current_user: TokenData = Depends(get_current_user), 
     title: str = Query(), 
     limit: int = Query(gt = 0), 
     skip: int = Query(gt = 0), 
     db: AsyncSession = Depends(get_db)
-) -> Optional[List[Post]]:
+) -> Sequence[Post]:
 
     # send the data to the post_service.py to performe operations 
-    return await get_all_posts(title, current_user, db, limit, skip)
+    return await get_all_posts(current_user, db, limit, skip, title)
 
 
 
@@ -115,7 +117,7 @@ async def get_all_posts_owner(
     response_model = PostPrivateOut
 )
 async def update_post(
-    current_user = Depends(get_current_user), 
+    current_user: TokenData = Depends(get_current_user), 
     id: int = Path(gt = 0), 
     update_post: PostUpdate = Body(...), 
     db: AsyncSession = Depends(get_db)
@@ -133,7 +135,7 @@ async def update_post(
     status_code = status.HTTP_204_NO_CONTENT
 )
 async def delete_post(
-    current_user = Depends(get_current_user), 
+    current_user: TokenData = Depends(get_current_user), 
     id: int = Path(gt = 0), 
     db: AsyncSession = Depends(get_db)
 ) :
